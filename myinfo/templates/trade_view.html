@@ -1,0 +1,71 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+    <div>
+        <h3>Trade Contents View</h3>
+        <p>View account to see it in action.</p>
+
+        <div class="form-group">
+            {% if tmp == '1' %}
+            <input type="text" class="form-control" value="받는 사람 : {{ username }}" name="username" id="username" readonly>
+            {% else %}
+            <input type="text" class="form-control" value="보낸 사람 : {{ username }}" name="username" id="username" readonly>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {% if db.status_reg == True %}
+            <input type="text" class="form-control" value="열람 가능" placeholder="열람여부" value="" readonly>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ db.date_reg }}" placeholder="구분" value="" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ db.gubun_reg }}" placeholder="구분" value="" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ db.name_reg }}" placeholder="이름" value="" name="name_reg" id="name_reg" readonly>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" value="{{ db.email_reg }}" placeholder="이메일" value="" name="email_reg" id="email_reg" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ db.jumin_number }}" placeholder="주민등록번호" name="jumin_number" id="jumin_number" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ db.phone_number }}" placeholder="전화번호" name="phone_number" id="phone_number" readonly>
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="sex_reg" id="sex_reg" readonly>
+                {% if sex_reg_len == 0 %}
+                    <option selected>성별을 선택해주세요.</option>
+                {% elif db.sex_reg == '남자' %}
+                    <option selected>남자</option>
+                {% elif db.sex_reg == '여자' %}
+                    <option selected>여자</option>
+                {% endif %}
+                <option value='남자'>None</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="marry_reg" id="marry_reg" readonly>
+               {% if marry_reg_len == 0 %}
+                    <option selected>결혼 유무를 선택해주세요.</option>
+                {% elif db.marry_reg == '기혼' %}
+                    <option selected>기혼</option>
+                {% elif db.marry_reg == '미혼' %}
+                    <option selected>미혼</option>
+                {% endif %}
+                <option value='기혼'>None</option>
+            </select>
+        </div>
+        {% if user.username == db.send_id %}
+        <button class="btn btn-primary btn-sm btn-block" onclick="location.href='{% url 'cancel_info' %}?inx={{ db.inx }}'">회  수
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

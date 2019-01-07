@@ -1,0 +1,25 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>My Info Edit</h3>
+            <p>Edit account to see it in action.</p>
+            <form class="m-t" role="form" method="post" action="{% url 'edit' %}">{% csrf_token %}
+                <div class="form-group">
+                    {{ end_data }}
+                </div>
+                <div class="form-group">
+                    {{ status }}
+                </div>
+
+
+            </form>
+            <p class="m-t"> <small>SCC Trade app &copy; 2018</small> </p>
+        </div>
+    </div>
+{% endblock %}

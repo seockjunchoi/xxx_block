@@ -1,0 +1,34 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>Send You'r Money</h3>
+            <p>Send account to see it in action.</p>
+            <form class="m-t" role="form" method="post" action="{% url 'send_money' %}">{% csrf_token %}
+                <div class="form-group">
+                    <input type="hidden" class="form-control" value="{{ user.username }}" name="send_id" id="send_id">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="받는 사람 아이디" name="receive_id" id="receive_id">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ amount }} 원" name="amount" id="amount" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="송금할 금액을 입력" name="send_money" id="send_money">
+                </div>
+                <div class="form-group">
+                    {{ response }}
+                </div>
+                <input type="submit" class="btn btn-primary block full-width m-b">Charge</input>
+
+            </form>
+            <p class="m-t"> <small>SCC Trade app &copy; 2018</small> </p>
+        </div>
+    </div>
+{% endblock %}

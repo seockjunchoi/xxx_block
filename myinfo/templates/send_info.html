@@ -1,0 +1,48 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+    <form class="m-t" role="form" method="post" action="{% url 'send_info' %}">{% csrf_token %}
+    <div>
+        <h3>Send My Info</h3>
+        <p>보내실 정보를 선택 해야 합니다.</p>
+
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ user.username }}" name="username" id="username" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="username_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ name_reg }}" placeholder="이름" value="" name="name_reg" id="name_reg" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="name_reg_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" value="{{ email_reg }}" placeholder="이메일" value="" name="email_reg" id="email_reg" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="email_reg_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ jumin_number }}" placeholder="주민등록번호" name="jumin_number" id="jumin_number" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="jumin_number_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ phone_number }}" placeholder="전화번호" name="phone_number" id="phone_number" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="phone_number_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ sex_reg }}" placeholder="성별" name="sex_reg" id="sex_reg" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="sex_reg_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ marry_reg }}" placeholder="결혼유무" name="marry_reg" id="marry_reg" readonly>
+            <div class="col-sm-10"><label> <input type="checkbox" class="i-checks" name="marry_reg_box" value="True"> Check me </label></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="receive_id" id="receive_id" placeholder="받는사람 아이디">
+        </div>
+        <input type="submit" class="btn btn-primary block full-width m-b">
+    </div>
+    </form>
+</div>
+{% endblock %}

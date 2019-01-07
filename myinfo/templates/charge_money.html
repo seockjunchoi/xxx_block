@@ -1,0 +1,29 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>My Info Charge Money</h3>
+            <p>Edit account to see it in action.</p>
+            <form class="m-t" role="form" method="post" action="{% url 'charge_money' %}">{% csrf_token %}
+                <div class="form-group">
+                    <input type="hidden" class="form-control" value="{{ user.username }}" name="username" id="username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ amount }} 원" name="amount" id="amount" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Here charge amount" name="charge_money" id="charge_money">
+                </div>
+                <!--<input type="submit" class="btn btn-primary block full-width m-b">Charge</input>-->
+                <input type="text" class="btn btn-primary block full-width m-b">Charge</input>
+
+            </form>
+            <p class="m-t"> <small>SCC Trade app &copy; 2018</small> </p>
+        </div>
+    </div>
+{% endblock %}

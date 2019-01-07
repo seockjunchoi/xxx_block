@@ -1,0 +1,40 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>Profile</h3>
+            <p>Edit account to see it in action.</p>
+            <form class="m-t" role="form" method="post" action="{% url 'profile' %}">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ user.username }}" name="username" id="username">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" value="{{ user.email }}" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ user.first_name }}" name="phone" id="phone">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Old Password" name="old_passwd" id="old_passwd">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="New Password" name="password1" id="password1">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Again Password" name="password2" id="password2">
+                </div>
+                <div class="form-group">
+                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+                </div>
+                <input type="submit" class="btn btn-primary block full-width m-b">Profile</input>
+
+            </form>
+            <p class="m-t"> <small>SCC Trade app &copy; 2018</small> </p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>Cancel Send Info</h3>
+            <p>Cancel account to see it in action.</p>
+
+            <h3>정보를 회수 하였습니다.</h3>
+            <button class="btn btn-primary btn-sm btn-block" onclick="location.href='{% url 'send_trade_list' %}'>회원가입
+
+        </div>
+    </div>
+{% endblock %}

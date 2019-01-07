@@ -1,0 +1,79 @@
+{% extends "share/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+
+<script>
+    function search(word)
+    {
+    var frm = document.schFrm;
+    frm.action="myinfo/receive_trade_list/?page="+word;
+    frm.submit();
+    }
+</script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Receive List Trade Info</h2>
+        <ol class="breadcrumb">
+            <li>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-content">
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>Index</td>
+                            <td>구분</td>
+                            <td>Send_id</td>
+                            <td>Receive_id</td>
+                            <td>해쉬 값</td>
+                            <td>날자</td>
+                        </tr>
+                        {% for var in data %}
+                        <tr>
+                            <td>{{ var.inx }}</td>
+                            {% if var.status_reg == True %}
+                            <td><a href="{% url 'trade_view' %}?inx={{ var.inx }}">{{ var.gubun_reg }} / 활성화</td>
+                            {% else %}
+                            <td>{{ var.gubun_reg }} / 회수완료</td>
+                            {% endif %}
+                            <td>{{ var.send_id }}</td>
+                            <td>{{ var.receive_id }}</td>
+                            <td>{{ var.value_reg }}</td>
+                            <td>{{ var.date_reg }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- 테이블 페이지 넘버 시작 -->
+                    <div id="btn-group">
+                        <a href="?page={{ page }}"><img src="{% static 'btn_prev.gif' %}"></a>
+                    {% for page in total_page %}
+                    <a{% if current_page != page %} href="javascript:search({{page}})" {% endif %}>
+                    <span{% if current_page == page %} style="font-weight: bold" {% endif %}>
+                    {{ page }}</span>
+                    </a>
+                    {% endfor %}
+                        <a href="?page={{ page }}"><img src="{% static 'btn_next.gif' %}"></a>
+                    </div>
+                    <!-- 테이블 페이지 넘버 끝 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

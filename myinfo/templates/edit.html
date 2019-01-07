@@ -1,0 +1,68 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+
+            <h3>My Info Edit</h3>
+            <p>Edit account to see it in action.</p>
+            <form class="m-t" role="form" method="post" action="{% url 'edit' %}">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ user.username }}" name="username" id="username" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ name_reg }}" placeholder="이름" value="" name="name_reg" id="name_reg">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" value="{{ email_reg }}" placeholder="이메일" value="" name="email_reg" id="email_reg">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ jumin_number }}" placeholder="주민등록번호" name="jumin_number" id="jumin_number">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ phone_number }}" placeholder="전화번호" name="phone_number" id="phone_number">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="sex_reg" id="sex_reg">
+                        {% if sex_reg_len == 0 %}
+                            <option selected>성별을 선택해주세요.</option>
+                        {% elif sex_reg == '남자' %}
+                            <option selected>남자</option>
+                        {% elif sex_reg == '여자' %}
+                            <option selected>여자</option>
+                        {% endif %}
+                        <option value='남자'>남자</option>
+                        <option value='여자'>여자</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="marry_reg" id="marry_reg">
+                       {% if marry_reg_len == 0 %}
+                            <option selected>결혼 유무를 선택해주세요.</option>
+                        {% elif marry_reg == '기혼' %}
+                            <option selected>기혼</option>
+                        {% elif marry_reg == '미혼' %}
+                            <option selected>미혼</option>
+                        {% endif %}
+                        <option value='기혼'>기혼</option>
+                        <option value='미혼'>미혼</option>
+                    </select>
+                </div>
+                {% if myaccount_reg == "0" %}
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" name="myaccount_reg" id="myaccount_reg">
+                </div>
+                {% else %}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{ myaccount_reg }}" name="myaccount_reg" id="myaccount_reg" readonly>
+                </div>
+                {% endif %}
+                <input type="submit" class="btn btn-primary block full-width m-b">Profile</input>
+            </form>
+            <p class="m-t"> <small>SCC Trade app &copy; 2018</small> </p>
+        </div>
+    </div>
+{% endblock %}

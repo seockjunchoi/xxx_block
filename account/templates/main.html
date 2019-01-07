@@ -1,0 +1,110 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>DashBoard</h2>
+        <ol class="breadcrumb">
+            <li>
+
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+                <input type="hidden" name="id" value="">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-success pull-right"></span>
+                            <h5>내 정보</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">{{activesvrcnt}}</h1>
+                            <div class="stat-percent font-bold text-success">{{value}}% <i class="fa fa-bolt"></i></div>
+                            <small>Total count</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-info pull-right"></span>
+                            <h5>잔 고</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">{{portactivesvrcnt}}</h1>
+                            <div class="stat-percent font-bold text-info">{{portvalue}}% <i class="fa fa-level-up"></i></div>
+                            <small>Total count</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-primary pull-right"></span>
+                            <h5>최근 거래 10건</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">{{alarm_cnt}}</h1>
+                            <div class="stat-percent font-bold text-navy">100% <i class="fa fa-level-up"></i></div>
+                            <small>Receive result</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-danger pull-right"></span>
+                            <h5>기타<h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">{{counter}}</h1>
+                            <div class="stat-percent font-bold text-danger">100% <i class="fa fa-level-down"></i></div>
+                            <small>Total count</small>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-content">
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+
+                        <tbody>
+                        {% for var in alarm_log %}
+                        <tr>
+                            <td>{{var.inx}}</td>
+                            <td>{{var.ip_address}}</td>
+                            <td>{{var.enter_date}}</td>
+                            <td>{{var.descc}}</td>
+                            <td>{{var.server_name}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

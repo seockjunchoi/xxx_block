@@ -1,0 +1,24 @@
+{% extends "share/base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+{% include "share/menu.html" %}
+{% include "share/top.html" %}
+<div class="middle-box text-center animated fadeInDown">
+    <div>
+        <h3>My Info amount</h3>
+        <p>View account to see it in action.</p>
+
+        <div class="ibox-title">
+            <span class="label label-info pull-right"></span>
+            <h2>잔 고</h2>
+        </div>
+        <div class="ibox-content">
+            <h2 class="no-margins">{{ amount }} 원</h2>
+        </div>
+        <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <button class="btn btn-primary btn-sm btn-block" onclick="location.href='{% url 'charge_money' %}'"?username={{ user.username }}">충  전
+        </div>
+    </div>
+</div>
+{% endblock %}
